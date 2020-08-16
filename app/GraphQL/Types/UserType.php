@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Types;
 
-use App\User;
+use App\Models\User;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 use GraphQL\Type\Definition\Type; 
 use Rebing\GraphQL\Support\Facades\GraphQL; 

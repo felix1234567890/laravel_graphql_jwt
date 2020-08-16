@@ -8,3 +8,5 @@
 6. Run `docker-compose exec app php artisan migrate --seed`
 7. Open GraphQL playground on `http://localhost:8080/graphiql` and run queries
 8. Don't forget to run register and login mutations to obtain access token which should be pasted inside Authorization header
+
+Notice: For file uploads in GraphQL I recommend using Altair GraphQL client.

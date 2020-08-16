@@ -105,6 +105,9 @@ return [
                 'books' => App\GraphQL\Queries\Book\BooksQuery::class,
                 'users' => App\GraphQL\Queries\User\UsersQuery::class,
                 'user' => App\GraphQL\Queries\User\UserQuery::class,
+                'profiles' => App\GraphQL\Queries\Profile\ProfilesQuery::class,
+                'profile' => App\GraphQL\Queries\Profile\ProfileQuery::class,
+
             ],
             'mutation' => [
                 'createBook' => App\GraphQL\Mutations\Book\CreateBookMutation::class,
@@ -114,7 +117,10 @@ return [
                 'loginUser' => App\GraphQL\Mutations\User\LoginUserMutation::class,
                 'deleteUser' => App\GraphQL\Mutations\User\DeleteUserMutation::class,
                 'updateUser' => App\GraphQL\Mutations\User\UpdateUserMutation::class,
-                // 'example_mutation'  => ExampleMutation::class,
+                'createProfile' => App\GraphQL\Mutations\Profile\CreateProfileMutation::class,
+                'deleteProfile' => App\GraphQL\Mutations\Profile\DeleteProfileMutation::class,
+                'updateProfile' => App\GraphQL\Mutations\Profile\UpdateProfileMutation::class,
+         // 'example_mutation'  => ExampleMutation::class,
             ],
             'middleware' => [],
             'method' => ['get', 'post'],
@@ -133,6 +139,8 @@ return [
     'types' => [
         'Book' => App\GraphQL\Types\BookType::class,
         'User' => App\GraphQL\Types\UserType::class,
+        'Profile' => App\GraphQL\Types\ProfileType::class,
+        \Rebing\GraphQL\Support\UploadType::class,
         // 'example'           => ExampleType::class,
         // 'relation_example'  => ExampleRelationType::class,
         // \Rebing\GraphQL\Support\UploadType::class,

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Mutations\Book;
 
-use App\Book;
+use App\Models\Book;
 use Closure;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;

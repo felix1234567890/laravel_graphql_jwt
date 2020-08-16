@@ -2,22 +2,21 @@
 
 declare(strict_types=1);
 
-namespace App\GraphQL\Mutations\Book;
+namespace App\GraphQL\Mutations\Profile;
 
-use App\Models\Book;
+use App\Models\Profile;
 use Closure;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Mutation;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class DeleteBookMutation extends Mutation
+class DeleteProfileMutation extends Mutation
 {
-    private $auth;
     protected $attributes = [
-        'name' => 'deleteBook',
+        'name' => 'deleteProfile',
     ];
-
+    private $auth;
     public function authorize($root, array $args, $ctx, ResolveInfo $resolveInfo = null, Closure $getSelectFields = null):bool {
         try {
             $this->auth = JWTAuth::parseToken()->authenticate();
@@ -27,8 +26,8 @@ class DeleteBookMutation extends Mutation
         if(! $this->auth){
             return false;
         }
-        $book  = Book::findOrFail($args['id']);
-        if($book->user_id != $this->auth['id']){
+        $profile  = Profile::findOrFail($args['id']);
+        if($profile->user_id != $this->auth['id']){
             return false;
         }
         return true;
@@ -52,7 +51,8 @@ class DeleteBookMutation extends Mutation
 
     public function resolve($root, $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-       $book = Book::findOrFail($args['id']);
-        return $book->delete() ? true : false;
+        $profile = Profile::findOrFail($args['id']);
+        unlink($profile->filePath);
+        return $profile->delete() ? true : false;
     }
 }

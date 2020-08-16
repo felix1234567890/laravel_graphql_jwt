@@ -2,25 +2,24 @@
 
 declare(strict_types=1);
 
-namespace App\GraphQL\Queries\Book;
+namespace App\GraphQL\Queries\Profile;
 
-use App\Models\Book;
+use App\Models\Profile;
 use Closure;
-
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Query;
 
-class BookQuery extends Query
+class ProfileQuery extends Query
 {
     protected $attributes = [
-        'name' => 'book',
+        'name' => 'profile'
     ];
-    
+
     public function type(): Type
     {
-        return GraphQL::type('Book');
+        return GraphQL::type('Profile');
     }
 
     public function args(): array
@@ -30,17 +29,12 @@ class BookQuery extends Query
                 'name' => 'id',
                 'type' => Type::int(),
                 'rules' => ['required']
-                ],];
-            }  
+                ],
+        ];
+    }
 
     public function resolve($root, $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-        return Book::findOrFail($args['id']);
+        return Profile::findOrFail($args['id']);
     }
-    public function validationErrorMessages(array $args = []): array
-{
-    return [
-        'required' => 'Please enter an id',
-    ];
-}
 }

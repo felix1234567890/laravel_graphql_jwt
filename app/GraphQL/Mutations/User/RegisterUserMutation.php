@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Mutations\User;
 
-use App\User;
+use App\Models\User;
 use Closure;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;

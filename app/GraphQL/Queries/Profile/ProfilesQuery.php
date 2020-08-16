@@ -2,44 +2,40 @@
 
 declare(strict_types=1);
 
-namespace App\GraphQL\Queries\Book;
+namespace App\GraphQL\Queries\Profile;
 
-use App\Models\Book;
+use App\Models\Profile;
 use Closure;
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Facades\GraphQL;
 use Rebing\GraphQL\Support\Query;
+use Rebing\GraphQL\Support\SelectFields;
 
-class BooksQuery extends Query
+class ProfilesQuery extends Query
 {
     protected $attributes = [
-        'name' => 'books',
+        'name' => 'profile/Profiles',
+        'description' => 'A query'
     ];
-   
+
     public function type(): Type
     {
-        return Type::listOf(GraphQL::type('Book'));
+        return Type::listOf(GraphQL::type('Profile'));
     }
-    public function args():array
+
+    public function args(): array
     {
         return [
-            'limit' => [
-                'name' => 'limit',
-                'type' => Type::int()
-            ],
+
         ];
     }
 
-
     public function resolve($root, $args, $context, ResolveInfo $resolveInfo, Closure $getSelectFields)
     {
-        if(isset($args['limit'])){
-            return Book::limit($args['limit'])->get();
-        }
         $fields = $getSelectFields();
         $with = $fields->getRelations();
-        $books = Book::with($with);
-        return $books->get();
+        $profiles = Profile::with($with);
+        return $profiles->get();
     }
 }

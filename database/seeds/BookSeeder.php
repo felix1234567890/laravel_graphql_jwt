@@ -1,6 +1,6 @@
 <?php
 
-use App\Book;
+use App\Models\Book;
 use Illuminate\Database\Seeder;
 
 
